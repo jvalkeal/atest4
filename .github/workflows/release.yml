@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'releases/**'
+
+jobs:
+  build:
+    name: Build Server
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - uses: jfrog/setup-jfrog-cli@v1
+      with:
+        version: 1.36.0
+      env:
+        JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
+    - name: Configure JFrog Cli
+      run: |
+        jfrog rt mvnc --server-id-resolve=spring --repo-resolve-releases=libs-spring-dataflow --repo-resolve-snapshots=libs-spring-dataflow --server-id-deploy=spring --repo-deploy-snapshots=libs-spring-dataflow --repo-deploy-releases=libs-spring-dataflow
+    - name: Build and Publish
+      run: jfrog rt mvn -U -B clean package
