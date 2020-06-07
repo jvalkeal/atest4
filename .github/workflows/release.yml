@@ -19,6 +19,7 @@ jobs:
         version: 1.36.0
       env:
         JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
+    - uses: hmarr/debug-action@v1.0.0
     - name: Configure JFrog Cli
       run: |
         jfrog rt mvnc --server-id-resolve=spring --repo-resolve-releases=libs-spring-dataflow --repo-resolve-snapshots=libs-spring-dataflow --server-id-deploy=spring --repo-deploy-snapshots=libs-spring-dataflow --repo-deploy-releases=libs-spring-dataflow
