@@ -24,4 +24,5 @@ jobs:
 
       - name: PATH3
         run: echo $PATH
-
+        env:
+          TEST_GAMES: ${{ secrets.TEST_GAMES }} 
