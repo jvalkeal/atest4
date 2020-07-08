@@ -3,6 +3,14 @@ name: Gradle Branch Build
 on:
   repository_dispatch:
     types: [build-command]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
 
 jobs:
   build:
