@@ -15,5 +15,9 @@ jobs:
         ensure-commands: |
           mvn
           gradle
+    - uses: jvalkeal/build-zoo-handler@master
+      with:
+        ensure-env: |
+          XXX
     - name: say hi
       run: echo hi
