@@ -1,0 +1,16 @@
+name: zoo test
+
+on: [push]
+
+jobs:
+  build:
+    name: Test cf cli
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jvalkeal/build-zoo-handler@master
+      with:
+        ensure-commands: |
+          maven
+          gradle
+    - name: print version
+      run: cf version
