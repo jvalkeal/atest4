@@ -4,13 +4,16 @@ on: [push]
 
 jobs:
   build:
-    name: Test cf cli
+    name: Test zoo ensure commands
     runs-on: ubuntu-latest
     steps:
+    - uses: jvalkeal/setup-maven@v1
+      with:
+        maven-version: 3.6.2
     - uses: jvalkeal/build-zoo-handler@master
       with:
         ensure-commands: |
           maven
           gradle
-    - name: print version
-      run: cf version
+    - name: say hi
+      run: echo hi
