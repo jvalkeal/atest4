@@ -11,13 +11,13 @@ jobs:
       with:
         maven-version: 3.6.2
     - name: zoo ensure commands
-      uses: jvalkeal/build-zoo-handler@master
+      uses: jvalkeal/build-zoo-handler@main
       with:
         ensure-commands: |
           mvn
           gradle
     - name: zoo ensure env
-      uses: jvalkeal/build-zoo-handler@master
+      uses: jvalkeal/build-zoo-handler@main
       with:
         ensure-env: |
           M2_HOME
