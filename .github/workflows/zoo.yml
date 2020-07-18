@@ -13,7 +13,7 @@ jobs:
     - uses: jvalkeal/build-zoo-handler@master
       with:
         ensure-commands: |
-          maven
+          mvn
           gradle
     - name: say hi
       run: echo hi
