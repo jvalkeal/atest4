@@ -4,18 +4,20 @@ on: [push]
 
 jobs:
   build:
-    name: Test zoo ensure commands
+    name: Test zoo action
     runs-on: ubuntu-latest
     steps:
     - uses: jvalkeal/setup-maven@v1
       with:
         maven-version: 3.6.2
-    - uses: jvalkeal/build-zoo-handler@master
+    - name: zoo ensure commands
+      uses: jvalkeal/build-zoo-handler@master
       with:
         ensure-commands: |
           mvn
           gradle
-    - uses: jvalkeal/build-zoo-handler@master
+    - name: zoo ensure env
+      uses: jvalkeal/build-zoo-handler@master
       with:
         ensure-env: |
           M2_HOME
