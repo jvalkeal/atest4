@@ -1,0 +1,7 @@
+---
+applications:
+  - name: atest4-demo
+    memory: 1G
+    disk_quota: 1G
+    instances: 1
+    path: ../build/libs/demo-0.0.1-SNAPSHOT.jar
