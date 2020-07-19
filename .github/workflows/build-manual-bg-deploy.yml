@@ -20,11 +20,12 @@ jobs:
         java-version: 1.8
 
     # set cf with blue/green deploy plugin
-    - uses: jvalkeal/setup-cf-cli@gh3-work1
+    - uses: jvalkeal/setup-cf-cli@gh6-work1
       with:
         version: 6.51.0
         plugin-repo: https://plugins.cloudfoundry.org
         plugin-id: blue-green-deploy
+        login: true
 
     # sanity checks what we actually need later for build and deploy
     - uses: jvalkeal/build-zoo-handler@main
@@ -42,8 +43,8 @@ jobs:
     - name: Build
       run: ./gradlew clean build
 
-    - name: CF Login
-      run: cf login -a $CF_API -u $CF_USERNAME -o $CF_ORG -s $CF_SPACE -p $CF_PASSWORD
+    # - name: CF Login
+    #   run: cf login -a $CF_API -u $CF_USERNAME -o $CF_ORG -s $CF_SPACE -p $CF_PASSWORD
 
     - name: CF Deploy
       run: cf blue-green-deploy atest4-demo -f .cf/demo-manifest.yml --smoke-test .cf/demo-manifest-smoke.sh --delete-old-apps
