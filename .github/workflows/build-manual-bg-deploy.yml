@@ -31,6 +31,7 @@ jobs:
       with:
         ensure-commands: |
           cf
+          curl
         ensure-env: |
           CF_API
           CF_ORG
@@ -38,10 +39,8 @@ jobs:
           CF_USERNAME
           CF_PASSWORD
 
-    # using zoo-handler aka swiff army knife to do blue/green deployment
-    #- uses: jvalkeal/build-zoo-handler@main
-    #  with:
-    #    cf-bluegreen-manifest: .cf/manifest.yml
+    - name: Build
+      run: ./gradlew clean build
 
-    - name: test cli
-      run: cf plugins
+    - name: Deploy
+      run: cf blue-green-deploy atest4-demo -f .cf/demo-manifest.yml --smoke-test .cf/demo-manifest-smoke.sh
