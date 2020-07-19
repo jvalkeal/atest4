@@ -3,6 +3,13 @@ name: Test CF Blue/Green Deploy
 # allows to run this directly from gh ui without params
 on: [workflow_dispatch]
 
+env:
+  CF_API: ${{ secrets.CF_API }}
+  CF_ORG: ${{ secrets.CF_ORG }}
+  CF_SPACE: ${{ secrets.CF_SPACE }}
+  CF_USERNAME: ${{ secrets.CF_USERNAME }}
+  CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
