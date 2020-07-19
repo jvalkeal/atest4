@@ -1,0 +1,40 @@
+name: Test CF Blue/Green Deploy
+
+# allows to run this directly from gh ui without params
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    # set cf with blue/green deploy plugin
+    - uses: jvalkeal/setup-cf-cli@gh3-work1
+      with:
+        version: 6.51.0
+        plugin-repo: https://plugins.cloudfoundry.org
+        plugin-id: blue-green-deploy
+
+    # sanity checks what we actually need later for build and deploy
+    - uses: jvalkeal/build-zoo-handler@main
+      with:
+        ensure-commands: |
+          cf
+        ensure-env: |
+          CF_API
+          CF_ORG
+          CF_SPACE
+          CF_USERNAME
+          CF_PASSWORD
+
+    # using zoo-handler aka swiff army knife to do blue/green deployment
+    #- uses: jvalkeal/build-zoo-handler@main
+    #  with:
+    #    cf-bluegreen-manifest: .cf/manifest.yml
+
+    - name: test cli
+      run: cf plugins
