@@ -20,7 +20,7 @@ jobs:
         java-version: 1.8
 
     # set cf with blue/green deploy plugin
-    - uses: jvalkeal/setup-cf-cli@main
+    - uses: jvalkeal/setup-cf-cli@gh3-await
       with:
         version: 6.51.0
         plugin-repo: https://plugins.cloudfoundry.org
