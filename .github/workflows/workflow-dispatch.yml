@@ -2,8 +2,8 @@ name: Test Workflow Dispatch
 
 on:
   workflow_dispatch:
-    ref: [master]
     inputs:
+      ref: [master]
       logLevel:
         description: 'Log level'     
         required: true
