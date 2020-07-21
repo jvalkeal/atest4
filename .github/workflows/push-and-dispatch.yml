@@ -1,0 +1,17 @@
+name: push and dispatch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Test cf cli
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jvalkeal/setup-cf-cli@v0
+      with:
+        version: 6.51.0
+    - name: print version
+      run: cf version
