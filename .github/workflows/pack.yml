@@ -1,0 +1,11 @@
+name: pack test
+
+on: [push]
+
+jobs:
+  build:
+    name: Test pack cli
+    runs-on: ubuntu-latest
+    steps:
+    - name: print version
+      run: pack --version
