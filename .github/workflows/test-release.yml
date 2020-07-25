@@ -68,13 +68,11 @@ jobs:
     # tag release
     - name: Tag Release
       uses: jvalkeal/build-zoo-handler@main
-      env:
-        RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
       with:
         tag-release-username: 'Spring Buildmaster'
         tag-release-useremail: 'buildmaster@springframework.org'
-        tag-release-branch: $RELEASE_VERSION
-        tag-release-tag: v$RELEASE_VERSION
+        tag-release-branch: ${{ github.event.inputs.releaseVersion }}
+        tag-release-tag: v${{ github.event.inputs.releaseVersion }}
 
     # - name: Tag Release
     #   env:
