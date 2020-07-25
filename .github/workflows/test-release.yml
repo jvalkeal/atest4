@@ -27,7 +27,8 @@ jobs:
       with:
         java-version: 1.8
     - uses: jvalkeal/setup-maven@v1
-      maven-version: 3.6.2
+      with:
+        maven-version: 3.6.2
     - uses: jfrog/setup-jfrog-cli@v1
       with:
         version: 1.36.0
