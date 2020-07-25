@@ -1,5 +1,6 @@
 name: Test Release
 
+# manual workflow dispatch, we require needed versions
 on:
   workflow_dispatch:
     inputs:
@@ -16,6 +17,7 @@ on:
         required: true
         default: '0.0.0'
 
+# stash needed inputs to env
 env:
   RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
   TEST1_VERSION: ${{ github.event.inputs.test1Version }}
