@@ -35,14 +35,14 @@ jobs:
         JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
 
     # sanity checks
-    - uses: jvalkeal/build-zoo-handler@main
-      with:
-        ensure-commands: |
-          curl
-          jfrog
-        ensure-env: |
-          RELEASE_VERSION
-          TEST1_VERSION
+    # - uses: jvalkeal/build-zoo-handler@main
+    #   with:
+    #     ensure-commands: |
+    #       curl
+    #       jfrog
+    #     ensure-env: |
+    #       RELEASE_VERSION
+    #       TEST1_VERSION
 
     # massage poms
     - name: Configure Release Versions
