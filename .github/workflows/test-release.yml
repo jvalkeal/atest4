@@ -67,14 +67,22 @@ jobs:
 
     # tag release
     - name: Tag Release
-      env:
-        RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
-      run: |
-        git checkout -b $RELEASE_VERSION
-        git commit -a -m "Release $RELEASE_VERSION"
-        git push origin $RELEASE_VERSION
-        git tag "v$RELEASE_VERSION"
-        git push --tags origin
+      uses: jvalkeal/build-zoo-handler@main
+      with:
+        tag-release-username: 'Spring Buildmaster'
+        tag-release-useremail: 'buildmaster@springframework.org'
+        tag-release-branch: $RELEASE_VERSION
+        tag-release-tag: v$RELEASE_VERSION
+
+    # - name: Tag Release
+    #   env:
+    #     RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
+    #   run: |
+    #     git checkout -b $RELEASE_VERSION
+    #     git commit -a -m "Release $RELEASE_VERSION"
+    #     git push origin $RELEASE_VERSION
+    #     git tag "v$RELEASE_VERSION"
+    #     git push --tags origin
 
     # git add .
     # git config --global user.name 'Spring Buildmaster'
