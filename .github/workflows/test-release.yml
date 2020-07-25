@@ -53,6 +53,7 @@ jobs:
       run: |
         mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$RELEASE_VERSION
         mvn versions:set-property -DgenerateBackupPoms=false -Dproperty=test1.version -DnewVersion=$TEST1_VERSION
+        mvn versions:set-property -DgenerateBackupPoms=false -Dproperty=test2.version -DnewVersion=$TEST2_VERSION
 
     # configure jfrog targets
     - name: Configure JFrog Cli
