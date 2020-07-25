@@ -50,10 +50,16 @@ jobs:
       with:
         ensure-commands: |
           jfrog
+          mvn
         ensure-env: |
           RELEASE_VERSION
           TEST1_VERSION
           TEST2_VERSION
+
+    # configure jfrog targets
+    - name: Configure JFrog Cli
+      run: |
+        jfrog rt mvnc --server-id-resolve=spring --server-id-deploy=spring --repo-resolve-releases=libs-private-release --repo-deploy-snapshots=libs-private-snapshot --repo-resolve-snapshots=libs-private-snapshot --repo-deploy-releases=libs-private-release
 
     # massage poms
     - name: Configure Release Versions
@@ -61,11 +67,6 @@ jobs:
         mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$RELEASE_VERSION
         mvn versions:set-property -DgenerateBackupPoms=false -Dproperty=test1.version -DnewVersion=$TEST1_VERSION
         mvn versions:set-property -DgenerateBackupPoms=false -Dproperty=test2.version -DnewVersion=$TEST2_VERSION
-
-    # configure jfrog targets
-    - name: Configure JFrog Cli
-      run: |
-        jfrog rt mvnc --server-id-resolve=spring --server-id-deploy=spring --repo-resolve-releases=libs-private-release --repo-deploy-snapshots=libs-private-snapshot --repo-resolve-snapshots=libs-private-snapshot --repo-deploy-releases=libs-private-release
 
     # build and publish
     - name: Build and Publish
