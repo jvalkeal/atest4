@@ -72,7 +72,6 @@ jobs:
         tag-release-username: 'Spring Buildmaster'
         tag-release-useremail: 'buildmaster@springframework.org'
         tag-release-branch: ${{ github.event.inputs.releaseVersion }}
-        tag-release-tag: v${{ github.event.inputs.releaseVersion }}
 
     # - name: Tag Release
     #   env:
