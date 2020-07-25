@@ -16,6 +16,11 @@ on:
         required: true
         default: '0.0.0'
 
+env:
+  RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
+  TEST1_VERSION: ${{ github.event.inputs.test1Version }}
+  TEST2_VERSION: ${{ github.event.inputs.test2Version }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,14 +41,15 @@ jobs:
         JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
 
     # sanity checks
-    # - uses: jvalkeal/build-zoo-handler@main
-    #   with:
-    #     ensure-commands: |
-    #       curl
-    #       jfrog
-    #     ensure-env: |
-    #       RELEASE_VERSION
-    #       TEST1_VERSION
+    - name: Sanity Check
+      uses: jvalkeal/build-zoo-handler@main
+      with:
+        ensure-commands: |
+          jfrog
+        ensure-env: |
+          RELEASE_VERSION
+          TEST1_VERSION
+          TEST2_VERSION
 
     # massage poms
     - name: Configure Release Versions
@@ -72,24 +78,3 @@ jobs:
         tag-release-username: 'Spring Buildmaster'
         tag-release-useremail: 'buildmaster@springframework.org'
         tag-release-branch: ${{ github.event.inputs.releaseVersion }}
-
-    # - name: Tag Release
-    #   env:
-    #     RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
-    #   run: |
-    #     git checkout -b $RELEASE_VERSION
-    #     git commit -a -m "Release $RELEASE_VERSION"
-    #     git push origin $RELEASE_VERSION
-    #     git tag "v$RELEASE_VERSION"
-    #     git push --tags origin
-
-    # git add .
-    # git config --global user.name 'Spring Buildmaster'
-    # git config --global user.email 'buildmaster@springframework.org'
-
-    # - uses: jvalkeal/build-zoo-handler@main
-    #   with:
-    #     tag-release-username: 'Spring Buildmaster'
-    #     tag-release-useremail: 'buildmaster@springframework.org'
-    #     tag-release-branch: $RELEASE_VERSION
-    #     tag-release-tag: v$RELEASE_VERSION
