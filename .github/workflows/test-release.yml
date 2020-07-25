@@ -18,11 +18,12 @@ on:
         default: '0.0.0'
 
 # stash needed inputs to env
-# we use trusted actions so it's ok to share env
+# we use trusted actions so it's ok to share env with all
 env:
   RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
   TEST1_VERSION: ${{ github.event.inputs.test1Version }}
   TEST2_VERSION: ${{ github.event.inputs.test2Version }}
+  JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
 
 # one main build job which build and tags a release
 jobs:
@@ -41,8 +42,6 @@ jobs:
     - uses: jfrog/setup-jfrog-cli@v1
       with:
         version: 1.36.0
-      env:
-        JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
 
     # sanity checks
     - name: Sanity Check
