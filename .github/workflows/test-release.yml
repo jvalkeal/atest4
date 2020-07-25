@@ -70,11 +70,19 @@ jobs:
       env:
         RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
       run: |
-        git config --global user.name 'Spring Buildmaster'
-        git config --global user.email 'buildmaster@springframework.org'
         git add .
         git checkout -b $RELEASE_VERSION
         git commit -m "Release $RELEASE_VERSION"
         git push origin $RELEASE_VERSION
         git tag "v$RELEASE_VERSION"
         git push --tags origin
+
+    # git config --global user.name 'Spring Buildmaster'
+    # git config --global user.email 'buildmaster@springframework.org'
+
+    # - uses: jvalkeal/build-zoo-handler@main
+    #   with:
+    #     tag-release-username: 'Spring Buildmaster'
+    #     tag-release-useremail: 'buildmaster@springframework.org'
+    #     tag-release-branch: $RELEASE_VERSION
+    #     tag-release-tag: v$RELEASE_VERSION
