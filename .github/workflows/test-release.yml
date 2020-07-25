@@ -18,11 +18,13 @@ on:
         default: '0.0.0'
 
 # stash needed inputs to env
+# we use trusted actions so it's ok to share env
 env:
   RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
   TEST1_VERSION: ${{ github.event.inputs.test1Version }}
   TEST2_VERSION: ${{ github.event.inputs.test2Version }}
 
+# one main build job which build and tags a release
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -55,10 +57,6 @@ jobs:
 
     # massage poms
     - name: Configure Release Versions
-      env:
-        RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
-        TEST1_VERSION: ${{ github.event.inputs.test1Version }}
-        TEST2_VERSION: ${{ github.event.inputs.test2Version }}
       run: |
         mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$RELEASE_VERSION
         mvn versions:set-property -DgenerateBackupPoms=false -Dproperty=test1.version -DnewVersion=$TEST1_VERSION
@@ -71,7 +69,8 @@ jobs:
 
     # build and publish
     - name: Build and Publish
-      run: jfrog rt mvn -U -B clean install
+      run: |
+        jfrog rt mvn -U -B clean install
 
     # tag release
     - name: Tag Release
