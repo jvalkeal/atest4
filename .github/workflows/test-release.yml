@@ -63,7 +63,13 @@ jobs:
     # configure jfrog targets
     - name: Configure JFrog Cli
       run: |
-        jfrog rt mvnc --server-id-resolve=spring --server-id-deploy=spring --repo-resolve-releases=libs-private-release --repo-deploy-snapshots=libs-private-snapshot --repo-resolve-snapshots=libs-private-snapshot --repo-deploy-releases=libs-private-release
+        jfrog rt mvnc \
+          --server-id-resolve=spring \
+          --repo-resolve-releases=libs-private-release \
+          --repo-resolve-snapshots=libs-private-snapshot \
+          --server-id-deploy=spring \
+          --repo-deploy-releases=libs-private-release \
+          --repo-deploy-snapshots=libs-private-snapshot
 
     # massage poms
     - name: Configure Release Versions
