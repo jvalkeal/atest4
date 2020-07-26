@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Echo log level
       run: |
-        echo "Log level: ${{ github.event.inputs.logLevel }}"
+        echo "Log level: ${{ github.event }}"
     - uses: jvalkeal/build-zoo-handler@gh6-work1
       with:
         pack-version: 0.11.2
