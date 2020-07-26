@@ -13,6 +13,7 @@ jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Echo log level
       run: |
         echo "Log level: ${{ github.event.inputs.logLevel }}"
