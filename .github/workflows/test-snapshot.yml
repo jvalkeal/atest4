@@ -39,9 +39,11 @@ jobs:
       run: |
         jfrog rt mvnc \
           --server-id-resolve=spring \
-          --repo-resolve-snapshots=snapshot \
+          --repo-resolve-releases=libs-private-release \
+          --repo-resolve-snapshots=libs-private-snapshot \
           --server-id-deploy=spring \
-          --repo-deploy-snapshots=snapshot
+          --repo-deploy-releases=libs-private-release \
+          --repo-deploy-snapshots=libs-private-snapshot
 
     # build and publish
     - name: Build and Publish
