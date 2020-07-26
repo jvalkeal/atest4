@@ -5,7 +5,7 @@ on:
     branch: [master]
     inputs:
       logLevel:
-        description: 'Log level'     
+        description: 'Log level'
         required: true
         default: 'warning'
 
@@ -13,5 +13,14 @@ jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
-    - run: |
+    - name: Echo log level
+      run: |
         echo "Log level: ${{ github.event.inputs.logLevel }}"
+    - name: Multiline command
+      run: |
+        ls \
+          gradle \
+          src
+        ls \
+          src \
+          gradle
