@@ -33,10 +33,6 @@ jobs:
         ensure-commands: |
           jfrog
           mvn
-        ensure-env: |
-          RELEASE_VERSION
-          TEST1_VERSION
-          TEST2_VERSION
 
     # configure jfrog targets
     - name: Configure JFrog Cli
