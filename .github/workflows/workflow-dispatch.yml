@@ -8,6 +8,36 @@ on:
         description: 'Log level'
         required: true
         default: 'warning'
+      p0:
+        description: p0'
+        required: false
+      p1:
+        description: p1'
+        required: false
+      p2:
+        description: p2'
+        required: false
+      p3:
+        description: p3'
+        required: false
+      p4:
+        description: p4'
+        required: false
+      p5:
+        description: p5'
+        required: false
+      p6:
+        description: p6'
+        required: false
+      p7:
+        description: p7'
+        required: false
+      p8:
+        description: p8'
+        required: false
+      p9:
+        description: p9'
+        required: false
 
 jobs:
   printInputs:
