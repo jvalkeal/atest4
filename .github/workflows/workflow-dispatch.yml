@@ -35,9 +35,6 @@ on:
       p8:
         description: p8'
         required: false
-      p9:
-        description: p9'
-        required: false
 
 jobs:
   printInputs:
