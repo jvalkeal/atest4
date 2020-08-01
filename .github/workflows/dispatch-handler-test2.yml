@@ -29,4 +29,9 @@ jobs:
         dispatch-handler-repo: atest1
         dispatch-handler-event-type: build-zoo-handler
         dispatch-handler-client-payload-data: >
-          {"event": "build-succeed", "prop41": "val41"}
+          {
+            "event": "build-succeed",
+            "prop41": "val41",
+            "owner": "jvalkeal",
+            "repo": "atest4"
+          }
