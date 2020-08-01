@@ -28,13 +28,5 @@ jobs:
         dispatch-handler-owner: jvalkeal
         dispatch-handler-repo: atest1
         dispatch-handler-event-type: build-zoo-handler
-        dispatch-handler-client-payload-data: '{"event": "build-succeed", "prop41": "val41"}'
-
-    # - name: Notify main controller
-    #   uses: peter-evans/repository-dispatch@v1
-    #   with:
-    #     token: ${{ secrets.REPO_ACCESS_TOKEN }}
-    #     repository: jvalkeal/atest1
-    #     event-type: build-zoo-handler
-    #     client-payload: '{"build_zoo_handler":{"repo": "jvalkeal/atest4", "action": "build-succeed"}}'
-
+        dispatch-handler-client-payload-data: >
+          {"event": "build-succeed", "prop41": "val41"}
