@@ -1,11 +1,18 @@
 name: pack test
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
     name: Test pack cli
     runs-on: ubuntu-latest
     steps:
+
+    - name: Install Pack
+      uses: jvalkeal/build-zoo-handler@gh7-work1
+      with:
+        pack-version: 0.12.0
+
     - name: print version
       run: pack --version
