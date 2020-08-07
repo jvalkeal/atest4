@@ -9,11 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # - name: Dump GitHub context
-    #   env:
-    #     GITHUB_CONTEXT: ${{ toJson(github) }}
-    #   run: echo "$GITHUB_CONTEXT"
-
     # base setup
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v1
@@ -46,7 +41,6 @@ jobs:
           -DnewVersion='${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}'
         jfrog rt mvn -U -B clean install
         echo ::set-env name=BUILD_ZOO_HANDLER_atest4_version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-    # echo ::set-output name=RELEASE_VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 
     # zoo tag
     - name: Tag Release
@@ -54,8 +48,8 @@ jobs:
       with:
         tag-release-username: 'github-actions[bot]'
         tag-release-useremail: '41898282+github-actions[bot]@users.noreply.github.com'
-        tag-release-branch: ${{ steps.build.outputs.RELEASE_VERSION }}
-        tag-release-tag: ${{ steps.build.outputs.RELEASE_VERSION }}
+        tag-release-branch: ${{ env.BUILD_ZOO_HANDLER_atest4_version }}
+        tag-release-tag: ${{ env.BUILD_ZOO_HANDLER_atest4_version }}
         tag-release-tag-prefix: v
 
     # zoo notify
@@ -70,10 +64,3 @@ jobs:
           {
             "event": "build-succeed"
           }
-
-    # {
-    #   "event": "build-succeed",
-    #   "properties": {
-    #     "atest4_version": "${{ steps.build.outputs.RELEASE_VERSION }}"
-    #   }
-    # }
