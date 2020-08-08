@@ -46,7 +46,7 @@ jobs:
           -DprocessAllModules=false -DgenerateBackupPoms=false \
           -DnewVersion='${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}'
         jfrog rt mvn -U -B clean install
-        echo ::set-env name=BUILD_ZOO_HANDLER_atest1_version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo ::set-env name=BUILD_ZOO_HANDLER_atest4_version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 
     # zoo tag
     - name: Tag Release
