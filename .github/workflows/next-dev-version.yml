@@ -43,14 +43,14 @@ jobs:
 
     # zoo commit
     - name: Commit Next Dev Changes
-      uses: jvalkeal/build-zoo-handler@gh7-work1
+      uses: jvalkeal/build-zoo-handler@v0.0.1
       with:
         commit-changes-branch: master
         commit-changes-message: Next development version
 
     # zoo notify
     - name: Notify Build Zoo Handler Controller
-      uses: jvalkeal/build-zoo-handler@gh7-work1
+      uses: jvalkeal/build-zoo-handler@v0.0.1
       with:
         dispatch-handler-token: ${{ secrets.REPO_ACCESS_TOKEN }}
         dispatch-handler-owner: jvalkeal
