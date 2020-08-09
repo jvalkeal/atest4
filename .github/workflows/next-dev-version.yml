@@ -35,7 +35,6 @@ jobs:
     # build
     - name: Switch to Next Dev Version
       run: |
-        ls foobar
         jfrog rt mvn build-helper:parse-version versions:set \
           -DprocessAllModules=false -DgenerateBackupPoms=false \
           -DnewVersion='${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT'
