@@ -42,11 +42,11 @@ jobs:
         jfrog rt mvn -U -B clean install -DskipTests
         echo ::set-env name=BUILD_ZOO_HANDLER_atest4_version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 
-    - name: Dump steps context
+    - name: Dump job context
       if: ${{ always() }}
       env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      run: echo "$STEPS_CONTEXT"
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
 
     # zoo commit
     - name: Commit Next Dev Changes
