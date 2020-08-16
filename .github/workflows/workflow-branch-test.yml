@@ -7,6 +7,10 @@ on:
         description: 'Log level'
         required: false
         default: 'warning'
+      test:
+        description: 'Test'
+        required: false
+        default: 'warning'
 
 jobs:
   printInputs:
