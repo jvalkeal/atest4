@@ -26,7 +26,7 @@ jobs:
         tar -zc --ignore-failed-read --file build/gradlelogs.tar.gz build/test-results
     - name: Upload Build Logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: buildlogs
         path: build/gradlelogs.tar.gz
