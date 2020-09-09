@@ -20,4 +20,13 @@ jobs:
         java-version: ${{ matrix.java }}
     - name: Build with Gradle
       run: ./gradlew clean build
-
+    - name: Tar Build Logs
+      if: ${{ failure() }}
+      run: |
+        tar -zc --ignore-failed-read --file build/gradlelogs.tar.gz build/test-results
+    - name: Upload Build Logs
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v1
+      with:
+        name: buildlogs
+        path: build/gradlelogs.tar.gz
