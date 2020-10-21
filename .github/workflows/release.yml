@@ -42,6 +42,11 @@ jobs:
         dispatch-handler-extract-context-properties: true
 
     # build
+    - name: Echo
+      run: |
+        echo x${BUILD_ZOO_HANDLER_prop1}x
+
+    # build
     - name: Build and Publish
       id: build
       run: |
