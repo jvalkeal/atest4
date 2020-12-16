@@ -22,7 +22,7 @@ jobs:
         maven-version: 3.6.2
     - uses: jfrog/setup-jfrog-cli@v1
       with:
-        version: 1.36.0
+        version: 1.42.0
       env:
         JF_ARTIFACTORY_SPRING: ${{ secrets.JF_ARTIFACTORY_SECRET_SPRING }}
     - name: Configure JFrog Cli
