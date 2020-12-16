@@ -45,7 +45,7 @@ jobs:
     - name: Build and Publish
       id: build
       run: |
-        jfrog rt mvn -U -B clean install
+        jfrog rt mvn "-U -B clean install"
 
     # zoo success
     - name: Notify Build Success Zoo Handler Controller
