@@ -51,6 +51,7 @@ jobs:
           -DprocessAllModules=false -DgenerateBackupPoms=false \
           -DnewVersion='${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}'${BUILD_ZOO_HANDLER_atest4_version_postfix-${BUILD_ZOO_HANDLER_atest_version_postfix}}
         jfrog rt mvn -U -B clean install
+        jfrog rt build-publish
         echo BUILD_ZOO_HANDLER_atest4_version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_ENV
 
     # zoo tag
